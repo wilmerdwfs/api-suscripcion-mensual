@@ -11,62 +11,140 @@ Este proyecto implementa una arquitectura basada en **DDD (Domain-Driven Design)
 ```txt
 app/
 ├── Domain/
-│   ├── Empresa/
-│   │   ├── Entities/
-│   │   │   └── Empresa.php
-│   │   ├── ValueObjects/
-│   │   │   └── Ruc.php
-│   │   ├── Repositories/
-│   │   │   └── EmpresaRepositoryInterface.php
-│   │   └── Services/
-│   │       └── EmpresaValidator.php
-│   ├── Usuario/
-│   │   ├── Entities/
-│   │   │   └── Usuario.php
-│   │   └── ValueObjects/
-│   │       └── Email.php
+│   ├── Models/
+│   │   ├── Empresa.php
+│   │   ├── Plan.php
+│   │   ├── PlanesSuscripcion.php
+│   │   └── Usuario.php
+│   │
+│   ├── Policies/
+│   │   └── EmpresaPolicy.php
+│   │
+│   ├── Repositories/
+│   │   ├── EmpresaRepositoryInterface.php
+│   │   ├── PlanRepositoryInterface.php
+│   │   ├── SuscripcionRepositoryInterface.php
+│   │   └── UsuarioRepositoryInterface.php
+│   │
+│   ├── Services/
+│   │   └── UsuarioEmailValidatorService.php
+│   │
+│   └── ValueObjects/
+│       ├── Empresa/
+│       │   └── LimiteUsuarios.php
+│       ├── Plan/
+│       │   └── Caracteristicas.php
+│       └── Usuario/
+│           └── EmailUsuario.php
 │
 ├── Application/
 │   ├── UseCases/
-│   │   └── CreateEmpresaUseCase.php
-│   ├── DTOs/
 │   │   ├── Empresa/
-│   │   │   ├── CambiarPlanDTO.php
-│   │   │   ├── CreateEmpresaDTO.php
-│   │   │   └── UpdateEmpresaDTO.php
+│   │   │   ├── CambiarPlanUseCase.php
+│   │   │   ├── CreateEmpresaUseCase.php
+│   │   │   ├── DeleteEmpresaUseCase.php
+│   │   │   ├── GetEmpresaUseCase.php
+│   │   │   ├── GetSuscripcionesUseCase.php
+│   │   │   └── UpdateEmpresaUseCase.php
 │   │   ├── Plan/
-    │   │   ├── CreatePlanDTO.php
-    │   │   └── UpdatePlanDTO.php
-    │   └── Ususario/
-    │        ├── CreateUsuarioDTO.php
-    │        └── UpdateUsuarioDTO.php
-    └── UseCases/
-
-└── UpdatePlanDTO.php
+│   │   │   ├── CreatePlanUseCase.php
+│   │   │   ├── DeletePlanUseCase.php
+│   │   │   ├── GetPlanCaracteristicasUseCase.php
+│   │   │   ├── GetPlanUseCase.php
+│   │   │   └── UpdatePlanUseCase.php
+│   │   └── Usuario/
+│   │       ├── CreateUsuarioUseCase.php
+│   │       ├── DeleteUsuarioUseCase.php
+│   │       ├── GetUsuarioUseCase.php
+│   │       └── UpdateUsuarioUseCase.php
+│   └── DTOs/
+│       ├── Empresa/
+│       │   ├── CambiarPlanDTO.php
+│       │   ├── CreateEmpresaDTO.php
+│       │   └── UpdateEmpresaDTO.php
+│       ├── Plan/
+│       │   ├── CreatePlanDTO.php
+│       │   └── UpdatePlanDTO.php
+│       └── Usuario/
+│           ├── CreateUsuarioDTO.php
+│           └── UpdateUsuarioDTO.php
+│
 ├── Infrastructure/
-│   ├── Persistence/
+│   ├── Eloquent/
 │   │   ├── EloquentEmpresaRepository.php
-│   │   └── migrations/
-│   │       └── 2025_07_16_create_empresas_table.php
+│   │   ├── EloquentPlanRepository.php
+│   │   ├── EloquentSuscripcionRepository.php
+│   │   └── EloquentUsuarioRepository.php
+│   │
 │   └── Services/
 │       └── EmailService.php
 │
 ├── Http/
 │   ├── Controllers/
-│   │   └── EmpresaController.php
+│   │   ├── EmpresaController.php
+│   │   ├── PlanController.php
+│   │   └── UsuarioController.php
+│   │
 │   ├── Requests/
-│   │   └── EmpresaRequest.php
+│   │   ├── Empresa/
+│   │   │   ├── FormCambiarPlanRequest.php
+│   │   │   ├── StoreEmpresaRequest.php
+│   │   │   └── UpdateEmpresaRequest.php
+│   │   ├── Plan/
+│   │   │   ├── StorePlanRequest.php
+│   │   │   └── UpdatePlanRequest.php
+│   │   └── Usuario/
+│   │       └── FormCreateUsuarioRequest.php
+│   │
 │   └── Routes/
 │       └── api.php
 │
 tests/
 ├── Unit/
-│   └── Domain/
-│       └── EmpresaTest.php
-├── Feature/
-│   └── Api/
-│       └── EmpresaApiTest.php
-
+│   ├── Domain/
+│   │   ├── Models/
+│   │   │   ├── EmpresaTest.php
+│   │   │   ├── PlanTest.php
+│   │   │   └── UsuarioTest.php
+│   │   ├── Policies/
+│   │   │   └── EmpresaPolicyTest.php
+│   │   ├── Services/
+│   │   │   └── UsuarioEmailValidatorServiceTest.php
+│   │   └── ValueObjects/
+│   │       ├── Empresa/
+│   │       │   └── LimiteUsuariosTest.php
+│   │       ├── Plan/
+│   │       │   └── CaracteristicasTest.php
+│   │       └── Usuario/
+│   │           └── EmailUsuarioTest.php
+│   │
+│   ├── Application/
+│   │   └── UseCases/
+│   │       ├── Empresa/
+│   │       │   ├── CambiarPlanUseCaseTest.php
+│   │       │   ├── CreateEmpresaUseCaseTest.php
+│   │       │   ├── DeleteEmpresaUseCaseTest.php
+│   │       │   ├── GetEmpresaUseCaseTest.php
+│   │       │   ├── GetSuscripcionesUseCaseTest.php
+│   │       │   └── UpdateEmpresaUseCaseTest.php
+│   │       ├── Plan/
+│   │       │   ├── CreatePlanUseCaseTest.php
+│   │       │   ├── DeletePlanUseCaseTest.php
+│   │       │   ├── GetPlanCaracteristicasUseCaseTest.php
+│   │       │   ├── GetPlanUseCaseTest.php
+│   │       │   └── UpdatePlanUseCaseTest.php
+│   │       └── Usuario/
+│   │           ├── CreateUsuarioUseCaseTest.php
+│   │           ├── DeleteUsuarioUseCaseTest.php
+│   │           ├── GetUsuarioUseCaseTest.php
+│   │           └── UpdateUsuarioUseCaseTest.php
+│   │
+│   └── Infrastructure/
+│       └── Eloquent/
+│           ├── EloquentEmpresaRepositoryTest.php
+│           ├── EloquentPlanRepositoryTest.php
+│           ├── EloquentSuscripcionRepositoryTest.php
+│           └── EloquentUsuarioRepositoryTest.php
 
 ---
 
