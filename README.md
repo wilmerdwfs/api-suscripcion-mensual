@@ -6,25 +6,66 @@ Este proyecto implementa una arquitectura basada en **DDD (Domain-Driven Design)
 
 ## 📦 Estructura del Proyecto
 
+## 📦 Estructura del Proyecto (DDD) con archivos
+
 ```txt
 app/
-├── Domain/                # Núcleo del negocio
+├── Domain/
 │   ├── Empresa/
 │   │   ├── Entities/
+│   │   │   └── Empresa.php
 │   │   ├── ValueObjects/
+│   │   │   └── Ruc.php
 │   │   ├── Repositories/
+│   │   │   └── EmpresaRepositoryInterface.php
 │   │   └── Services/
+│   │       └── EmpresaValidator.php
+│   ├── Usuario/
+│   │   ├── Entities/
+│   │   │   └── Usuario.php
+│   │   └── ValueObjects/
+│   │       └── Email.php
+│
 ├── Application/
 │   ├── UseCases/
-│   └── DTOs/
+│   │   └── CreateEmpresaUseCase.php
+│   ├── DTOs/
+│   │   ├── Empresa/
+│   │   │   ├── CambiarPlanDTO.php
+│   │   │   ├── CreateEmpresaDTO.php
+│   │   │   └── UpdateEmpresaDTO.php
+│   │   ├── Plan/
+    │   │   ├── CreatePlanDTO.php
+    │   │   └── UpdatePlanDTO.php
+    │   └── Ususario/
+    │        ├── CreateUsuarioDTO.php
+    │        └── UpdateUsuarioDTO.php
+    └── UseCases/
+
+└── UpdatePlanDTO.php
 ├── Infrastructure/
 │   ├── Persistence/
+│   │   ├── EloquentEmpresaRepository.php
+│   │   └── migrations/
+│   │       └── 2025_07_16_create_empresas_table.php
 │   └── Services/
+│       └── EmailService.php
+│
 ├── Http/
 │   ├── Controllers/
+│   │   └── EmpresaController.php
 │   ├── Requests/
+│   │   └── EmpresaRequest.php
 │   └── Routes/
+│       └── api.php
+│
 tests/
+├── Unit/
+│   └── Domain/
+│       └── EmpresaTest.php
+├── Feature/
+│   └── Api/
+│       └── EmpresaApiTest.php
 
 
 ---
