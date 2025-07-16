@@ -150,19 +150,22 @@ tests/
 
 ---
 ⚙️ Instalación
-bash
-Copiar
-Editar
+
 git clone https://github.com/wilmerdwfs/api-suscripcion-mensual.git
 cd api-suscripcion-mensual
-composer install
+composer install, esto es para instalar dependencias si se da el caso
+Mover el proyecto a un servidor de aplicaciones como xampp o simplemente ponerlo a funcionar con el comando php artisan server como un servidor virtual
 cp .env.example .env
-php artisan key:generate
-php artisan migrate
-🧪 Ejecución de Tests
-Puedes ejecutar las pruebas para validar la estructura del proyecto y su funcionamiento:
 
-php artisan test, para ejecutar pruebas
+.env :
+// #parametros importantes
+   DB_DATABASE=suscripcion_mensual #la que se tenga
+   DB_USERNAME=root #la que se tenga
+   DB_PASSWORD= #la que se tenga
+//
+, cambiar el nombre de ese archivo: conexion a la base de datos
+
+php artisan migrate
 ```
 
 ## 🚀 Primer Uso de la API
