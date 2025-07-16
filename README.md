@@ -16,19 +16,15 @@ app/
 │   │   ├── Plan.php
 │   │   ├── PlanesSuscripcion.php
 │   │   └── Usuario.php
-│   │
 │   ├── Policies/
 │   │   └── EmpresaPolicy.php
-│   │
 │   ├── Repositories/
 │   │   ├── EmpresaRepositoryInterface.php
 │   │   ├── PlanRepositoryInterface.php
 │   │   ├── SuscripcionRepositoryInterface.php
 │   │   └── UsuarioRepositoryInterface.php
-│   │
 │   ├── Services/
 │   │   └── UsuarioEmailValidatorService.php
-│   │
 │   └── ValueObjects/
 │       ├── Empresa/
 │       │   └── LimiteUsuarios.php
@@ -75,7 +71,6 @@ app/
 │   │   ├── EloquentPlanRepository.php
 │   │   ├── EloquentSuscripcionRepository.php
 │   │   └── EloquentUsuarioRepository.php
-│   │
 │   └── Services/
 │       └── EmailService.php
 │
@@ -84,7 +79,6 @@ app/
 │   │   ├── EmpresaController.php
 │   │   ├── PlanController.php
 │   │   └── UsuarioController.php
-│   │
 │   ├── Requests/
 │   │   ├── Empresa/
 │   │   │   ├── FormCambiarPlanRequest.php
@@ -95,9 +89,12 @@ app/
 │   │   │   └── UpdatePlanRequest.php
 │   │   └── Usuario/
 │   │       └── FormCreateUsuarioRequest.php
-│   │
 │   └── Routes/
-│       └── api.php
+│       └── api.php      # Define rutas:
+│                        # - Route::apiResource('usuarios', UsuarioController::class);
+│                        # - Route::put('empresas/cambiar-plan', [EmpresaController::class, 'cambiarPlan']);
+│                        # - Route::apiResource('planes', PlanController::class);
+│                        # Todas protegidas con middleware 'auth:sanctum' según el grupo
 │
 tests/
 ├── Unit/
@@ -117,7 +114,6 @@ tests/
 │   │       │   └── CaracteristicasTest.php
 │   │       └── Usuario/
 │   │           └── EmailUsuarioTest.php
-│   │
 │   ├── Application/
 │   │   └── UseCases/
 │   │       ├── Empresa/
@@ -138,14 +134,12 @@ tests/
 │   │           ├── DeleteUsuarioUseCaseTest.php
 │   │           ├── GetUsuarioUseCaseTest.php
 │   │           └── UpdateUsuarioUseCaseTest.php
-│   │
 │   └── Infrastructure/
 │       └── Eloquent/
 │           ├── EloquentEmpresaRepositoryTest.php
 │           ├── EloquentPlanRepositoryTest.php
 │           ├── EloquentSuscripcionRepositoryTest.php
 │           └── EloquentUsuarioRepositoryTest.php
-
 ---
 
 ## 🚀 Tecnologías
@@ -157,20 +151,49 @@ tests/
 - Composer
 
 ---
-
-## ⚙️ Instalación
-
-```bash
-git clone https://github.com/tu-usuario/tu-repo.git
-cd tu-repo
+⚙️ Instalación
+bash
+Copiar
+Editar
+git clone https://github.com/wilmerdwfs/api-suscripcion-mensual.git
+cd api-suscripcion-mensual
 composer install
 cp .env.example .env
 php artisan key:generate
 php artisan migrate
-🧪 Ejecutar Tests
+🧪 Ejecución de Tests
+Puedes ejecutar las pruebas para validar la estructura del proyecto y su funcionamiento:
+
 bash
 Copiar
 Editar
 php artisan test
 # o directamente con PHPUnit
 ./vendor/bin/phpunit
+🚀 Primer Uso de la API
+Una vez el servidor esté en ejecución (php artisan serve), puedes comenzar probando los endpoints con tu cliente REST preferido (Postman, Insomnia, Thunder Client, etc.).
+
+Endpoint: POST /api/planes
+Este endpoint crea un nuevo plan de suscripción. Si omites campos obligatorios, obtendrás un error de validación como el siguiente:
+
+json
+Copiar
+Editar
+{
+  "message": "The nombre field is required. (and 3 more errors)",
+  "errors": {
+    "nombre": [
+      "The nombre field is required."
+    ],
+    "precioMensual": [
+      "The precio mensual field is required."
+    ],
+    "limiteUsuarios": [
+      "The limite usuarios field is required."
+    ],
+    "caracteristicas": [
+      "The caracteristicas field is required."
+    ]
+  }
+}
+
