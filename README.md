@@ -186,6 +186,7 @@ JSON Content
     "caracteristicas": 4
 }
 
+JSON Content
 Response
 {
   "mensaje": "Plan creado correctamente",
@@ -199,7 +200,9 @@ Response
 }
 //
 
-Endpoint: GET /api/planes
+GET /api/planes
+
+JSON Content
 //
 Response
 {
@@ -218,7 +221,9 @@ Response
 }
 //
 
-Endpoint: PUT /api/planes/1
+PUT /api/planes/1
+
+JSON Content
 //
 {
     "nombre": "Plan basico moderado",
@@ -227,6 +232,7 @@ Endpoint: PUT /api/planes/1
     "caracteristicas": 4
 }
 
+JSON Content
 Response
 {
   "mensaje": "Plan actualizado correctamente",
@@ -240,7 +246,9 @@ Response
 }
 //
 
-Endpoint: DELETE /api/planes/1
+DELETE /api/planes/1
+
+JSON Content
 Response
 //
 {
@@ -249,11 +257,17 @@ Response
 //
 
 CRUD EMPRESA
+
 Endpoints:
 GET /api/empresas
 POST /api/empresas
 PUT /api/empresas/parametro
 DELETE /api/empresas/parametro
+
+PUT /api/empresas/cambiar-plan
+GET /api/empresas/suscripciones
+
+POST /api/empresas
 
 JSON Content
 //
@@ -266,6 +280,7 @@ JSON Content
     "confirmarPassword": "123456"
 }
 
+JSON Content
 Response
 {
   "usuario": {
@@ -282,6 +297,89 @@ Response
 }
 //
 
+PUT /api/empresas/cambiar-plan
+
+JSON Content
+//
+{
+    "planId":2
+}
+
+JSON Content
+Response
+{
+  "mensaje": "Plan cambiado correctamente."
+}
+//
+
+GET /api/empresas/suscripciones
+
+JSON Content
+Response
+{
+    "id": 2,
+    "empresa_id": 8,
+    "plan_anterior_id": 1,
+    "plan_nuevo_id": 2,
+    "estado": "0",
+    "fecha": "2025-07-16"
+}
+//
+
+CRUD USUARIOS
+
+Endpoints:
+GET /api/usuarios
+POST /api/usuarios
+PUT /api/usuarios/parametro
+DELETE /api/usuarios/parametro
+
+POST /api/usuarios
+JSON Content
+//
+{
+    "nombre": "Vendedor 1",
+    "email": "vendedor1@gmail.com",
+    "password": "123456",
+    "confirmarPassword": "123456"
+}
+
+JSON Content
+Response
+{
+  "usuario": {
+    "nombre": "Vendedor 1",
+    "email": "vendedor1@gmail.com",
+    "password": "$2y$12$aWArICHw4/s8mEdqLogpQe5pXjY6BJjO2QAiMgHb0nL7Tp5WaZbnW",//placebo
+    "empresa_id": 1,
+    "id": 1
+  },
+  "access_token": "3|k9Yg4Xe9frUu05ad4jk45yrmowZ95D4dvZpGumop2eedf2f7",//importante para el logeo de ese usuario
+  "autorizacion": "Bearer 3|k9Yg4Xe9frUu05ad4jk45yrmowZ95D4dvZpGumop2eedf2f7"
+}
+//
+
+Si alcanza el limite de usuarios del plan
+POST /api/usuarios
+
+JSON Content
+Response
+//
+{
+  "error": "Se alcanzó el límite de usuarios según el plan actual. Limite de usuarios: 0"
+}
+//
+
+POST /api/usuarios
+Si el usuario entra hacer alguna peticion que le corresponde a la empresa
+
+JSON Content
+Response
+//
+{
+  "error": "No autorizado para gestionar esta empresa."
+}
+//
 ```
 
 
