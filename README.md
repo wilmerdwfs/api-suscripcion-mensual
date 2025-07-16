@@ -182,20 +182,67 @@ JSON Content
     "limiteUsuarios": 43,
     "precioMensual": 43,
     "caracteristicas": 4
-}    
-//
+}
 
 Response
-//
 {
   "mensaje": "Plan creado correctamente",
   "plan": {
     "nombre": "Plan basico",
-    "precio_mensual": 43,
-    "limite_usuarios": 43,
+    "precio_mensual": 40.000,
+    "limite_usuarios": 4,
     "caracteristicas": 4,
-    "id": 17
+    "id": 1
   }
+}
+//
+
+Endpoint: GET /api/planes
+//
+Response
+{
+  "mensaje": "Plan creado correctamente",
+  "plan": {
+    "id": 1
+    "nombre": "Plan basico",
+    "precio_mensual": 40.000,
+    "limite_usuarios": 4,
+    "caracteristicas": {
+      "DOMINIO_PERSONALIZADO": false,
+      "ACCESO_API": false,
+      "PANEL_ANALITICAS": true
+    }
+  }
+}
+//
+
+Endpoint: PUT /api/planes/1
+//
+{
+    "nombre": "Plan basico moderado",
+    "limiteUsuarios": 6,
+    "precioMensual": 50.000,
+    "caracteristicas": 4
+}
+
+Response
+{
+  "mensaje": "Plan actualizado correctamente",
+  "plan": {
+    "id": 16,
+    "nombre": "Plan basico moderado",
+    "precio_mensual": 50.000,
+    "limite_usuarios": 6,
+    "caracteristicas": "4"
+  }
+}
+//
+
+Endpoint: DELETE /api/planes/1
+Response
+//
+{
+  "message": "Plan eliminado correctamente"
 }
 //
 ```
