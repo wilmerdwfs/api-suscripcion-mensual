@@ -172,6 +172,8 @@ php artisan migrate
 Una vez el servidor esté en ejecución (php artisan serve) o simpremente alojado en un servidor de aplicaciones como xampp, puedes comenzar probando los endpoints con tu cliente REST preferido (Postman, Insomnia, Thunder Client, etc.).
 
 ```txt
+CRUD PLANES
+
 Endpoint: POST /api/planes
 Este endpoint crea un nuevo plan de suscripción.
 
@@ -245,6 +247,41 @@ Response
   "message": "Plan eliminado correctamente"
 }
 //
+
+CRUD EMPRESA
+Endpoints:
+GET /api/empresas
+POST /api/empresas
+PUT /api/empresas/parametro
+DELETE /api/empresas/parametro
+
+JSON Content
+//
+{
+   "planId": 1, //el id plan
+    "nombreEmpresa": "Tecno",
+    "nombreUsuario": "Tecno",//esto es para crear un registro en la tabla usuarios
+    "emailUsuario": "tecno@gmail.com",
+    "passwordUsuario": "123456",
+    "confirmarPassword": "123456"
+}
+
+Response
+{
+  "usuario": {
+    "nombre": "Tecno",
+    "email": "tecno@gmail.com",
+    "password": "$2y$12$ASty7uAddGprxFjScoko6O8Y6IyNySInvrBmZmCACO.PJs4a3KwuG",
+    "empresa_id": 1,
+    "es_admin": 1,//importante para policies
+    "id": 1
+  },
+  "access_token": "1|mUiWuU5K2lLDPBffscyYvZDZH4BsWDXL0xtdgA0Kff8adaef",/importante para logearse y hacer peticiones a las rutas restringidas
+  "token_type": "Bearer",
+  "autorizacion": "Bearer 1|mUiWuU5K2lLDPBffscyYvZDZH4BsWDXL0xtdgA0Kff8adaef"
+}
+//
+
 ```
 
 
