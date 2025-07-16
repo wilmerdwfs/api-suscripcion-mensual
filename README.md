@@ -4,8 +4,6 @@ Este proyecto implementa una arquitectura basada en **DDD (Domain-Driven Design)
 
 ---
 
-## 📦 Estructura del Proyecto
-
 ## 📦 Estructura del Proyecto (DDD) con archivos
 
 ```txt
@@ -164,36 +162,14 @@ php artisan migrate
 🧪 Ejecución de Tests
 Puedes ejecutar las pruebas para validar la estructura del proyecto y su funcionamiento:
 
-bash
-Copiar
-Editar
-php artisan test
-# o directamente con PHPUnit
-./vendor/bin/phpunit
-🚀 Primer Uso de la API
-Una vez el servidor esté en ejecución (php artisan serve), puedes comenzar probando los endpoints con tu cliente REST preferido (Postman, Insomnia, Thunder Client, etc.).
+php artisan test, para ejecutar pruebas
+```
+
+## 🚀 Primer Uso de la API
+Una vez el servidor esté en ejecución (php artisan serve) o simpremente alojado en un servidor de aplicaciones como xampp, puedes comenzar probando los endpoints con tu cliente REST preferido (Postman, Insomnia, Thunder Client, etc.).
 
 Endpoint: POST /api/planes
 Este endpoint crea un nuevo plan de suscripción. Si omites campos obligatorios, obtendrás un error de validación como el siguiente:
 
-json
-Copiar
-Editar
-{
-  "message": "The nombre field is required. (and 3 more errors)",
-  "errors": {
-    "nombre": [
-      "The nombre field is required."
-    ],
-    "precioMensual": [
-      "The precio mensual field is required."
-    ],
-    "limiteUsuarios": [
-      "The limite usuarios field is required."
-    ],
-    "caracteristicas": [
-      "The caracteristicas field is required."
-    ]
-  }
-}
+
 
