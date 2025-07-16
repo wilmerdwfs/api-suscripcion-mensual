@@ -154,7 +154,7 @@ tests/
 git clone https://github.com/wilmerdwfs/api-suscripcion-mensual.git
 cd api-suscripcion-mensual
 composer install, esto es para instalar dependencias si se da el caso
-Mover el proyecto a un servidor de aplicaciones como xampp o simplemente ponerlo a funcionar con el comando php artisan server como un servidor virtual
+Mover el proyecto a un servidor de aplicaciones como xampp o simplemente ponerlo a funcionar con el comando php artisan serve como un servidor virtual
 cp .env.example .env
 
 .env :
@@ -171,8 +171,35 @@ php artisan migrate
 ## 🚀 Primer Uso de la API
 Una vez el servidor esté en ejecución (php artisan serve) o simpremente alojado en un servidor de aplicaciones como xampp, puedes comenzar probando los endpoints con tu cliente REST preferido (Postman, Insomnia, Thunder Client, etc.).
 
+```txt
 Endpoint: POST /api/planes
-Este endpoint crea un nuevo plan de suscripción. Si omites campos obligatorios, obtendrás un error de validación como el siguiente:
+Este endpoint crea un nuevo plan de suscripción.
+
+JSON Content
+//
+{
+    "nombre": "Plan basico",
+    "limiteUsuarios": 43,
+    "precioMensual": 43,
+    "caracteristicas": 4
+}    
+//
+
+Response
+//
+{
+  "mensaje": "Plan creado correctamente",
+  "plan": {
+    "nombre": "Plan basico",
+    "precio_mensual": 43,
+    "limite_usuarios": 43,
+    "caracteristicas": 4,
+    "id": 17
+  }
+}
+//
+```
+
 
 
 
