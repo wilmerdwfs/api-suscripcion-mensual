@@ -3,9 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
-    PlanController,
+    ClienteController,
     EmpresaController,
-    UsuarioController
+    UsuarioController,
 };
 
 /*
@@ -30,6 +30,7 @@ Route::apiResource('planes', PlanController::class);
 
 Route::apiResource('empresas', EmpresaController::class);
 
+Route::apiResource('clientes', ClienteController::class);
 
 
 
