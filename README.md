@@ -100,39 +100,7 @@ app
 
 ---
 
-## 🛣️ routes/api.php
-```php
-<?php
-
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{
-    PlanController,
-    EmpresaController,
-    UsuarioController
-};
-
-/*
-|--------------------------------------------------------------------------
-| API Routes - DDD Structure
-|--------------------------------------------------------------------------
-|
-| Todas las rutas aquí son prefijadas con '/api' automáticamente
-| y llevan el middleware 'api' por defecto.
-|
-*/
-
-// Grupo de rutas protegidas
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::apiResource('usuarios', UsuarioController::class);
-    
-    Route::put('empresas/cambiar-plan', [EmpresaController::class, 'cambiarPlan']);
-    Route::get('empresas/suscripciones', [EmpresaController::class, 'suscripciones']);
-});
-
-// Rutas públicas
-Route::apiResource('planes', PlanController::class);
-Route::apiResource('empresas', EmpresaController::class);
-
+```
 🧪 tests
 
 tests
@@ -188,3 +156,68 @@ Los Repositories definen interfaces del dominio, implementadas en Infrastructure
 Los Value Objects modelan valores inmutables y con reglas de validación propias.
 
 Los Tests unitarios están organizados por capa y caso de uso.
+
+
+🧭 Instrucciones de uso del módulo API (estructura DDD)
+📁 Archivo principal
+
+routes/api.php
+
+Este archivo define todas las rutas disponibles en la API del proyecto, organizadas según el patrón DDD (Domain Driven Design) y protegidas por Sanctum cuando es necesario.
+
+🚀 Endpoints disponibles
+🔐 Rutas protegidas (requieren autenticación con token Sanctum)
+
+```bash
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::apiResource('usuarios', UsuarioController::class);
+    
+    Route::put('empresas/cambiar-plan', [EmpresaController::class, 'cambiarPlan']);
+    Route::get('empresas/suscripciones', [EmpresaController::class, 'suscripciones']);
+});
+
+```
+Uso
+
+Autenticación: debes enviar un token Bearer válido en el header
+Authorization: Bearer {token}
+
+```
+Rutas disponibles:
+
+GET /api/usuarios → Lista de usuarios
+
+POST /api/usuarios → Crear usuario
+
+PUT /api/usuarios/{id} → Actualizar usuario
+
+DELETE /api/usuarios/{id} → Eliminar usuario
+
+PUT /api/empresas/cambiar-plan → Cambiar plan de la empresa
+
+GET /api/empresas/suscripciones → Consultar suscripciones activas
+
+🌐 Rutas públicas
+Route::apiResource('planes', PlanController::class);
+Route::apiResource('empresas', EmpresaController::class);
+
+```
+Uso
+
+No requieren autenticación.
+
+Rutas generadas automáticamente:
+
+```
+GET /api/planes → Lista de planes
+
+GET /api/planes/{id} → Detalle de plan
+
+POST /api/planes → Crear plan
+
+PUT /api/planes/{id} → Actualizar plan
+
+DELETE /api/planes/{id} → Eliminar plan
+(lo mismo aplica para /api/empresas)
+```
+
