@@ -16,6 +16,8 @@ Empresas: CRUD completo; cada empresa tiene un solo plan activo y mantiene histo
 
 Usuarios: CRUD de usuarios internos por empresa, validando el límite de usuarios definido en el plan vigente.
 
+Estructura:
+
 ---
 ```bash
 ## 📂 app
