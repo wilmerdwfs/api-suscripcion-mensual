@@ -1,7 +1,20 @@
 # 🧱 Estructura del Proyecto Suscripcion Mensual (Arquitectura DDD - Laravel 12)
 
-Este proyecto sigue los principios de **Domain Driven Design (DDD)** y está organizado en capas bien definidas:
-**Application**, **Domain**, **Infrastructure**, **Http**, y **Tests**.
+🎯 Objetivo general
+
+Una API RESTful con Laravel 12, PHP 8.4 y MySQL 8.0, aplicando Domain Driven Design (DDD) y arquitectura limpia para lograr un código mantenible, testeable y escalable.
+
+🧩 Escenario
+
+El backend es una plataforma SaaS donde varias empresas pueden registrarse, elegir un plan de suscripción mensual y gestionar sus usuarios internos según las restricciones de su plan activo.
+
+⚙️ Requisitos funcionales
+
+Planes: CRUD completo con nombre, precio, límite de usuarios y características.
+
+Empresas: CRUD completo; cada empresa tiene un solo plan activo y mantiene historial de suscripciones.
+
+Usuarios: CRUD de usuarios internos por empresa, validando el límite de usuarios definido en el plan vigente.
 
 ---
 ```bash
