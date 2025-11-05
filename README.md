@@ -237,3 +237,89 @@ DELETE /api/planes/{id} → Eliminar plan
 (lo mismo aplica para /api/empresas)
 ```
 
+🧪 Cómo probar las rutas
+Requisitos
+
+Tener el servidor corriendo:
+
+```
+php artisan serve
+```
+
+Generar un token de usuario en el registro de usuario
+
+POST /api/plan → Crear 
+
+```
+{
+  "nombre": "Plan Profesional",
+  "precio_mensual": 49900,
+  "limite_usuarios": 20,
+  "caracteristicas": "Soporte prioritario, reportes avanzados, backups diarios"
+}
+
+```
+
+POST /api/usuarios → Crear 
+
+```
+curl -X POST http://127.0.0.1:8000/api/usuarios \
+  -H "Authorization: Bearer {token}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nombre": "Wilmer Enrique",
+    "email": "wilmer@erpmax.com",
+    "password": "123456",
+    "empresa_id": 1,
+    "es_admin": true
+  }'
+```
+Respuesta:
+
+```
+{
+  "id": 1,
+  "nombre": "Wilmer Enrique",
+  "email": "wilmer@erpmax.com",
+  "empresa_id": 1,
+  "es_admin": true,
+  "access_token": ?
+  "message": "Usuario creado correctamente"
+}
+```
+
+POST /api/empresas → Crear 
+
+```
+{
+  "nombre": "ERPMax S.A.S.",
+  "nit": "901234567-8",
+  "email": "contacto@erpmax.com",
+  "plan_id": 1
+}
+
+```
+Respuesta:
+
+```
+{
+  "success": true,
+  "message": "Empresa creada correctamente",
+  "data": {
+    "id": 12,
+    "nombre": "ERPMax S.A.S.",
+    "nit": "901234567-8",
+    "email": "contacto@erpmax.com",
+    "plan": {
+      "id": 1,
+      "nombre": "Plan Profesional",
+      "precio_mensual": 49.99,
+      "limite_usuarios": 20
+    },
+    "fecha_creacion": "2025-11-05T14:32:00Z"
+  }
+}
+
+```
+
+
